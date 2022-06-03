@@ -8,8 +8,6 @@ import { CityLogo } from "../Utils/Tools";
 import { useUserContext } from "../Utils/context";
 import { showToastSuccess } from "../Utils/Tools";
 
-
-
 const Header = () => {
   const user = useUserContext();
 
@@ -53,7 +51,11 @@ const Header = () => {
               Log out
             </Button>
           </>
-        ) : null}
+        ) : (
+          <Link to="/login">
+            <Button color="inherit">Log In</Button>
+          </Link>
+        )}
       </Toolbar>
     </AppBar>
   );

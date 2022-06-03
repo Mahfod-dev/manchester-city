@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD1glJ-yiy9xmGpZrTl5zI8duEWSozJWyw",
+  apiKey: process.env.REACT_APP_FIREBASE,
   authDomain: "live-chat-a7176.firebaseapp.com",
   projectId: "live-chat-a7176",
   storageBucket: "live-chat-a7176.appspot.com",
@@ -12,7 +12,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+console.log(auth);
+//retrieve collection data
+// cityDb.teams.forEach(async (item) => {
+//   try {
+//     const docRef = await addDoc(collection(db, "teams"), {
+//       item,
+//     });
 
+//     console.log(docRef.id);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+//Authenfication
 export const logout = async () => {
   await auth.signOut();
 };
@@ -20,6 +34,7 @@ export const logout = async () => {
 export const signIn = async (email, password) => {
   try {
     const user = await signInWithEmailAndPassword(auth, email, password);
+    console.log(user);
     return user;
   } catch (error) {
     console.log(error);
